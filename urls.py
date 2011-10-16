@@ -1,10 +1,13 @@
 from django.conf.urls.defaults import patterns, include, url
+from DJ_Learning.views import helloworld,current_datetime
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    (r'^hello/$', helloworld),
+    (r'^time/plus/(\d{1,2})/$',current_datetime),
     # Examples:
     # url(r'^$', 'DJ_Learning.views.home', name='home'),
     # url(r'^DJ_Learning/', include('DJ_Learning.foo.urls')),
