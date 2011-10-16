@@ -1,6 +1,6 @@
 {% extends "include/base.html" %}
-{% block page_title %}模版测试{% endblock %}
+{% block page_title %}模版测试 {% endblock %}
 {% block page_contents %}
-The local time is now <h2>{{ now|date:"Y-m-j H-i" }}</h2> </br>
-And the time you want is <h2>{{ dt }}</h2>
+The local time is now {{ now|date:"Y-m-j H-i" }} </br>
+And the time you want is {{ dt }}
 {% endblock %}

@@ -1,0 +1,7 @@
+{% extends "include/base.html" %}
+{% block page_title %}DB View{% endblock %}
+{% block page_contents %}
+    {% for man in Man_list %}
+        {{ man.name }}</br>
+    {% endfor %}
+{% endblock %}
