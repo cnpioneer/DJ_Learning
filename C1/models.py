@@ -18,3 +18,7 @@ class Man(models.Model):
 class CellDB(models.Model):
     number = models.CharField(max_length=11)
     owner= models.ForeignKey(Man)
+
+class Category(models.Model):
+    c_name = models.CharField(max_length=20,help_text="类别名称")
+    c_father = models.IntegerField(max_length=4,help_text="父级类别ID，目前系统容量为10000个类别")

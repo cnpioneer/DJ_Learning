@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="/static/js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript">
+$(
+        function(){
+                    $("#select1").change(function(){
+                        var thissl=$(this);
+                        if(thissl.val()!=''){
+                            //获取当前选中的省份
+                            var level_c=thissl.val();
+                            var thiss2=$("#select2");
+                            var thiss3=$("#select3");
+                            //市，区下拉框可见
+                            thiss2.attr("disabled",false);
+                            thiss3.attr("disabled",false);
+                            //获取市级下拉框
+                            $.getJSON("/static/jason/"+level_c+".json",function(data){
+                                thiss2.empty();
+                                var html='';
+                                $.each(data,function(index,txt,id){
+                                     html+='<option id='+txt['id'] + ' value='+txt['value']+'>'+txt['text']+'</option>';
+                                    thiss2.html(html);
+                                });
+                            });
+                            //获取区级下拉框
+                            $.getJSON("/static/jason/"+level_c+"_0.json",function(data){
+                                thiss3.empty();
+                                var html3='';
+                                $.each(data,function(index,txt){
+                                    html3+='<option id='+txt['id'] + ' value='+txt['value']+'>'+txt['text']+'</option>';
+                                    thiss3.html(html3);
+                                });
+                            });
+                        }
+                     //没有选中任何省份
+                    if(thissl.val()==''){
+                        $("#select2").empty();
+                        $("#select2").attr("disabled",true);
+                        $("#select3").empty();
+                        $("#select3").attr("disabled",true);
+                    }
+        }).change();
+
+
+         //当市成为焦点时
+        if($("#select1").val()!=''){
+            $("#select2").change(function(){
+                var level_a=$("#select1").val();
+                var thiss2=$(this);
+                var level_b=thiss2.val();
+                var thiss3=$("#select3");
+                //用省份名加市区代号调用当前选中的市的区
+                $.getJSON("/static/jason/"+level_a+'_'+level_b+'.json',function(data){
+                    thiss3.empty();
+                    var html3='';
+                    $.each(data,function(index,txt){
+                        html3+='<option id='+txt['id'] + ' value='+txt['value']+'>'+txt['text']+'</option>';
+                        thiss3.html(html3);
+                    });
+                });
+  
+            });
+        }
+    });
+</script>
+</head>
+<body>
+<select id="select1">
+<option value="">请选择分类</option>
+<option value="hunan">湖南</option>
+<option value="1">罗莱</option>
+</select>
+<select id="select2" disabled="disabled">
+</select>
+<select id="select3" disabled="disabled">
+</select>
+</body>
+</html>
