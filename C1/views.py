@@ -3,7 +3,12 @@ from django.shortcuts import render_to_response,get_object_or_404
 from C1.models import *
 
 def dbview(reqeust):
-    Man_list = Man.objects.all()
+    flist = Category.objects.filter(c_father = 0)
+    clist = []
+    for f in flist:
+        clist.append(Category.objects.filter(c_father = f.id))
+    
+     
     return render_to_response('dbview.html',locals())
 
 def category_list(request):

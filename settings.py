@@ -1,6 +1,6 @@
 # Django settings for DJ_Learning project.
 import os.path
-ROOT_PATH = os.path.dirname(__file__)
+JUST_HERE = os.path.dirname(__file__)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -72,7 +72,7 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    os.path.join(ROOT_PATH,'static').replace('\\','/'),
+    os.path.join(JUST_HERE,'static').replace('\\','/'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -106,7 +106,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'DJ_Learning.urls'
 
-TEMPLATE_DIRS = (os.path.join(ROOT_PATH, 'templates').replace('\\','/'),)
+TEMPLATE_DIRS = (os.path.join(JUST_HERE, 'templates').replace('\\','/'),)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
