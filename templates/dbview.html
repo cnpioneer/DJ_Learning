@@ -1,14 +1,11 @@
 {% extends "include/base.html" %}
 {% block page_title %}DB View{% endblock %}
 {% block page_contents %}
-    {% for f in flist %}
-        <div>{{ f }}</div>
-        {%  for c in clist %}
-          {% ifequal c.0.c_father f.id %} {# 根据c_father于父级循环的f.id是否匹配进行判断 #}
-            {{ c }}
-            {% endifequal %}
+    {% for t in tlist %}
+        <div>{{ t.0 }}</div>
+        {% for f in t.1 %}
+            {{ f }}/
         {% endfor %}
         <hr>
     {% endfor %}
-
 {% endblock %}

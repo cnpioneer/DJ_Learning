@@ -1,6 +1,12 @@
 # -*- coding: UTF-8 -*-
 from django.db import models
 
+class Province(models.Model):
+   provinceName = models.CharField(max_length = 20)
+class City(models.Model):
+   cityName = models.CharField(max_length = 20)
+   provinceID = models.ForeignKey(Province)
+
 class Man(models.Model):
     sid = models.CharField(max_length=18,help_text="身份证号")
     name = models.CharField(max_length=10)
@@ -24,4 +30,4 @@ class Category(models.Model):
     c_father = models.IntegerField(max_length=4,default=0,help_text="父级类别ID，目前系统容量为10000个类别")
 
     def __unicode__(self):
-        return (u'%d,%s') % (self.c_father,self.c_name)
+        return (u'%d,%d,%s') % (self.id,self.c_father,self.c_name)
