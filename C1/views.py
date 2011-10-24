@@ -43,3 +43,17 @@ def city_list(request):
         c['text'] = city.id
         city_list.append(c)
     return HttpResponse(simplejson.dumps(city_list), mimetype='application/json')
+
+
+import codecs
+def category_manage(request):
+    if request.GET.has_key('mode'):
+        mode = request.GET['mode']
+        if mode == 'reset':
+            jfile = codecs.open('static/js/category_data.js','w','utf-8')
+            jfile.write("var array=new Array();\n")
+            clist = Category.objects.all()
+            for c in clist:
+                jfile.write ("array[%d]=new Array('%d','%d','%s')\n"%(c.id-1,c.id,c.c_father,c.c_name))
+            jfile.close()
+    return render_to_response('category.html',locals())
