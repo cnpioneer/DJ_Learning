@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="/static/js/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript">
+    function getCityOptions(province_id){
+        $.ajax({
+            type: "GET",
+            url: "/getCityList?provinceID="+province_id,
+            dataType:'json',
+            success: function(data,textStatus){
+                var citySelect = document.getElementById("id_city");
+                for ( var i=citySelect.options.length-1; i>-1; i--){
+                    citySelect[i] = null;
+                }
+                if(data.length > 0) {
+                    $("#id_city").show();
+                    for(i=0;i<data.length;i++){
+                        citySelect.options[i] = new Option();
+                        citySelect.options[i].text = data[i].label;
+                        citySelect.options[i].value = data[i].text;
+                    }
+                }else
+                    $("#id_city").hide();
+
+            }
+        })
+    }
+    function getDistrictOptions(){
+        var obj = "([{name:'think',gender:'male'},{name:'lee',gender:'female'}])";
+        var ss = eval(obj);
+        alert(ss[0].name+","+ss[1].name);
+    }
+</script>
+
+
+<script language="javascript" >
+  /*
+**    ==================================================================================================
+**    类名：CLASS_LIANDONG_YAO
+**    功能：多级连动菜单
+**
+**    作者：YAODAYIZI
+**    ==================================================================================================
+**/
+  function CLASS_LIANDONG_YAO(array)
+  {
+   //数组，联动的数据源
+  	this.array=array;
+  	this.indexName='';
+  	this.obj='';
+  	//设置子SELECT
+	// 参数：当前onchange的SELECT ID，要设置的SELECT ID
+      this.subSelectChange=function(selectName1,selectName2)
+  	{
+  	//try
+  	//{
+    var obj1=document.all[selectName1];
+    var obj2=document.all[selectName2];
+    var objName=this.toString();
+    var me=this;
+
+    obj1.onchange=function()
+    {
+
+    	me.optionChange(this.options[this.selectedIndex].value,obj2.id)
+    }
+  	}
+  	//设置第一个SELECT
+	// 参数：indexName指选中项,selectName指select的ID
+  	this.firstSelectChange=function(indexName,selectName)
+  	{
+  	this.obj=document.all[selectName];
+  	this.indexName=indexName;
+  	this.optionChange(this.indexName,this.obj.id)
+  	}
+
+  // indexName指选中项,selectName指select的ID
+  	this.optionChange=function (indexName,selectName)
+  	{
+    var obj1=document.all[selectName];
+    var me=this;
+    obj1.length=0;
+    obj1.options[0]=new Option("请选择",'');
+    for(var i=0;i<this.array.length;i++)
+    {
+
+    	if(this.array[i][1]==indexName)
+    	{
+    	//alert(this.array[i][1]+" "+indexName);
+      obj1.options[obj1.length]=new Option(this.array[i][2],this.array[i][0]);
+    	}
+    }
+  	}
+
+  }
+  </script>
+</head>
+<body>
+<select id= "province" style="width:100px" onchange="getCityOptions(this.value);">
+<option value=""></option>
+<option value="1">广东</option>
+<option value="2">北京</option>
+</select>
+<select id= "id_city" style="width:100px" onchange="getDistrictOptions(this.value);">
+<option value=""></option>
+</select>
+<select id= "id_District" style="width:100px" >
+<option value=""></option>
+</select>
+<hr>
+
+  	<SELECT ID="s1" NAME="s1"  >
+    <OPTION selected></OPTION>
+  	</SELECT>
+  	<SELECT ID="s2" NAME="s2"  >
+    <OPTION selected></OPTION>
+  	</SELECT>
+  	<SELECT ID="s3" NAME="s3">
+    <OPTION selected></OPTION>
+  	</SELECT>
+	<script language="javascript">
+	//例子1-------------------------------------------------------------
+	//数据源
+  var array=new Array();
+  array[0]=new Array("1","0","华南地区"); //数据格式 ID，父级ID，名称
+  array[1]=new Array("华北地区","0","华北地区");
+  array[2]=new Array("2","1","上海");
+  array[3]=new Array("广东","1","广东");
+  array[4]=new Array("徐家汇","2","徐家汇");
+  array[5]=new Array("普托","2","普托");
+  array[6]=new Array("广州","广东","广州");
+  array[7]=new Array("湛江","广东","湛江");
+  //--------------------------------------------
+  //这是调用代码
+  var liandong=new CLASS_LIANDONG_YAO(array) //设置数据源
+  liandong.firstSelectChange("0","s1"); //设置第一个选择框
+  liandong.subSelectChange("s1","s2"); //设置子级选择框
+  liandong.subSelectChange("s2","s3");
+  alert (array);
+    </script>
+</body>
+</html>
