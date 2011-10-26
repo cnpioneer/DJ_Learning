@@ -5,6 +5,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.utils import simplejson
 from C1.models import *
 from C1.cform import *
+import json
 
 
 def dbview(reqeust):
@@ -44,16 +45,41 @@ def city_list(request):
         city_list.append(c)
     return HttpResponse(simplejson.dumps(city_list), mimetype='application/json')
 
+def category_jlist(request):
+    jsonclist = []
+    cjlist = Category.objects.filter(c_hidden=0)
+    for cj in cjlist:
+        c = {}
+        c['id'] = cj.id
+        c['pId'] = cj.c_father
+        c['name'] = cj.c_name
+        if (cj.c_father==0):
+            c['open'] = True
+        jsonclist.append(c)
+    return HttpResponse(simplejson.dumps(jsonclist), mimetype='application/json')
 
 import codecs
 def category_manage(request):
     if request.GET.has_key('mode'):
         mode = request.GET['mode']
         if mode == 'reset':
-            jfile = codecs.open('static/js/category_data.js','w','utf-8')
+            jfile = codecs.open('static/js/category_data.js','w','utf-8')#Python3.0以上版本可以直接使用f.open(...,'encoding':'utf-8')
             jfile.write("var array=new Array();\n")
             clist = Category.objects.all()
             for c in clist:
                 jfile.write ("array[%d]=new Array('%d','%d','%s')\n"%(c.id-1,c.id,c.c_father,c.c_name))
             jfile.close()
     return render_to_response('category.html',locals())
+
+
+def category_reconstruct(request):
+    if request.method == 'POST':
+        sd = str(request.raw_post_data)
+        jd = simplejson.dumps(sd)
+        print (type(jd))
+        #print request.raw_post_data
+        #f=open('static/test/ttt.js','w')
+        #f.write(request.POST)
+        #f.close()
+    return render_to_response('t1.html',locals())
+        

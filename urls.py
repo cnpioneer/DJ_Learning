@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from DJ_Learning.views import helloworld,current_datetime
-from C1.views import dbview,category_manage,form_test,city_list
+from C1.views import dbview,category_manage,form_test,city_list,category_reconstruct,category_jlist
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -14,6 +14,8 @@ urlpatterns = patterns('',
     (r'^formview/$',form_test),
     (r'^getCityList/$',city_list),
     (r'^category/$',category_manage),
+    (r'^crec/$',category_reconstruct),
+    (r'^clist/$',category_jlist),
     # Examples:
     # url(r'^$', 'DJ_Learning.views.home', name='home'),
     # url(r'^DJ_Learning/', include('DJ_Learning.foo.urls')),

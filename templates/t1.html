@@ -1,6 +1,9 @@
 {% extends "include/base.html" %}
 {% block page_title %}模版测试 {% endblock %}
 {% block page_contents %}
-The local time is now {{ now|date:"Y-m-j H-i" }} </br>
+The local time is now {{ now|date:"Y-m-j H-i" }} <br>
 And the time you want is {{ dt }}
+<form action="" method="POST">
+    <input type="submit" value="ok">
+</form>
 {% endblock %}

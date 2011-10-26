@@ -28,6 +28,7 @@ class CellDB(models.Model):
 class Category(models.Model):
     c_name = models.CharField(max_length=20,help_text="类别名称")
     c_father = models.IntegerField(max_length=4,default=0,help_text="父级类别ID，目前系统容量为10000个类别")
+    c_hidden = models.BooleanField(default=False,blank=True)
 
     def __unicode__(self):
         return (u'%d,%d,%s') % (self.id,self.c_father,self.c_name)
