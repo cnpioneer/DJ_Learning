@@ -5,7 +5,6 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.utils import simplejson
 from C1.models import *
 from C1.cform import *
-import json
 
 
 def dbview(reqeust):
@@ -74,12 +73,54 @@ def category_manage(request):
 
 def category_reconstruct(request):
     if request.method == 'POST':
-        sd = str(request.raw_post_data)
-        jd = simplejson.dumps(sd)
-        print (type(jd))
-        #print request.raw_post_data
-        #f=open('static/test/ttt.js','w')
-        #f.write(request.POST)
-        #f.close()
+        clist = eval(request.raw_post_data);
+
+        cid_list = [];
+        cid_old_list=[]
+        for c in clist:
+             cid_list.append(c['id'])
+
+        c_old = Category.objects.all()
+        for cd in c_old:
+            cid_old_list.append(cd.id)
+
+        cid_old_list.sort()
+        cid_list.sort()
+
+        cid_old_list_set = set(cid_old_list)
+        cid_list_set = set(cid_list)
+
+        #更新分类数据
+        cid_list_x = cid_old_list_set & cid_list_set #提取更新部分ID
+        c1 = Category.objects.filter(id__in=cid_list_x)#初步筛选
+        for c in clist:
+            try:
+                c1c = c1.get(id=c['id'])
+                if (c1c.c_name != unicode(c['name'],'UTF-8') or c1c.c_father!=c['pId']):#加入判断，减少数据库写操作
+                    c1c.c_name=unicode(c['name'],'UTF-8')
+                    c1c.c_father=c['pId']
+                    c1c.save()
+            except Exception as error:#因新分类库可能大于原有分类库，故会出现"not exist"错误，在此抛出
+                #print error
+                continue
+
+        #删除分类
+        cid_list_x = cid_old_list_set - cid_list_set #提取被删除部分ID
+        Category.objects.filter(id__in=cid_list_x).update(c_hidden=True)
+
+
+        #新增分类
+        cid_list_x = cid_list_set - cid_old_list_set #提取新增部分ID
+        for c in clist:
+            try:
+                cid_list_x.remove(c['id'])#set无直接索引办法，故使用删除，然后异常抛出处理
+                c_add = Category(c_name=unicode(c['name'],'UTF-8'),c_father=c['pId'])
+                c_add.save()
+                for i in range(len(clist)):#更新原始数据中的pId值，避免数据库开销
+                    if clist[i]['pId'] == c['id']:
+                        clist[i]['pId'] = c_add.id
+            except Exception as error:
+                #print error
+                continue
     return render_to_response('t1.html',locals())
         

@@ -27,10 +27,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/C1/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="78" column="24" selection-start="2751" selection-end="2751" vertical-scroll-proportion="-13.44">
+            <state line="3" column="61" selection-start="209" selection-end="209" vertical-scroll-proportion="0.093587525">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="t1.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/t1.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="0" selection-start="281" selection-end="281" vertical-scroll-proportion="-2.131579">
               <folding />
             </state>
           </provider>
@@ -45,10 +54,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="async_edit.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="async_edit.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/test/async_edit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="181" column="8" selection-start="6350" selection-end="6350" vertical-scroll-proportion="6.3508773">
+            <state line="148" column="6" selection-start="5091" selection-end="5091" vertical-scroll-proportion="-4.7647057">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="select_menu.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/桌面/demo/super/select_menu.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="78" column="44" selection-start="2410" selection-end="2410" vertical-scroll-proportion="-54.0">
               <folding />
             </state>
           </provider>
@@ -57,7 +75,7 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/C1/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="46" selection-start="990" selection-end="990" vertical-scroll-proportion="0.0">
+            <state line="30" column="55" selection-start="999" selection-end="999" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -66,7 +84,7 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="8" selection-start="682" selection-end="687" vertical-scroll-proportion="0.0">
+            <state line="16" column="8" selection-start="643" selection-end="647" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -86,22 +104,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/README" />
         <option value="$PROJECT_DIR$/static/test/final.html" />
         <option value="$PROJECT_DIR$/static/js/category_data.js" />
         <option value="$PROJECT_DIR$/templates/category.html" />
         <option value="$USER_HOME$/My Documents/Downloads/JQuery zTree v3.0 beta/demo/exedit/edit_super.html" />
         <option value="$USER_HOME$/My Documents/Downloads/JQuery zTree v3.0 beta/demo/exedit/drag_super.html" />
-        <option value="$PROJECT_DIR$/templates/t1.html" />
         <option value="$USER_HOME$/My Documents/Downloads/JQuery zTree v3.0 beta/demo/exedit/async_edit.html" />
         <option value="$PROJECT_DIR$/settings.py" />
-        <option value="$PROJECT_DIR$/C1/models.py" />
         <option value="$PROJECT_DIR$/urls.py" />
         <option value="$PROJECT_DIR$/static/test/simpleData.html" />
         <option value="$PROJECT_DIR$/static/test/async.html" />
         <option value="$PROJECT_DIR$/static/test/test.html" />
+        <option value="$PROJECT_DIR$/C1/models.py" />
+        <option value="$PROJECT_DIR$/templates/t1.html" />
         <option value="$PROJECT_DIR$/static/test/async_edit.html" />
         <option value="$PROJECT_DIR$/C1/views.py" />
+        <option value="$PROJECT_DIR$/1.sql" />
       </list>
     </option>
   </component>
@@ -131,6 +149,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Favorites" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -247,18 +267,16 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.JavaScript" />
+    <property name="recentsLimit" value="5" />
     <property name="DefaultHtmlFileTemplate" value="Html" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager" selected="Django server.Unnamed">
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
@@ -404,7 +422,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28142244" sideWeight="0.6714761" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2857143" sideWeight="0.6714761" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852387" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -460,11 +478,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/include/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="40" selection-start="265" selection-end="301" vertical-scroll-proportion="-3.4615386" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/test/final.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="4489" vertical-scroll-proportion="-0.0" />
@@ -485,75 +498,76 @@
         <state line="109" column="0" selection-start="4052" selection-end="4052" vertical-scroll-proportion="0.03119584" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/t1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="28" selection-start="218" selection-end="218" vertical-scroll-proportion="0.16333938" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/category.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="56" column="0" selection-start="1302" selection-end="1302" vertical-scroll-proportion="0.58983666" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/1.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="297" selection-end="2383" vertical-scroll-proportion="0.12478336">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/test/simpleData.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="680" selection-end="735" vertical-scroll-proportion="0.6022305">
-          <folding />
-        </state>
+        <state line="18" column="13" selection-start="680" selection-end="735" vertical-scroll-proportion="0.6022305" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/test/async.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="750" selection-end="1227" vertical-scroll-proportion="0.35934663">
-          <folding />
-        </state>
+        <state line="23" column="0" selection-start="750" selection-end="1227" vertical-scroll-proportion="0.35934663" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/test/test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="42" selection-start="0" selection-end="1388" vertical-scroll-proportion="0.81669694">
-          <folding />
-        </state>
+        <state line="25" column="42" selection-start="0" selection-end="1388" vertical-scroll-proportion="0.81669694" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/urls.py">
+    <entry file="file://$USER_HOME$/桌面/demo/super/select_menu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="8" selection-start="682" selection-end="687" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/C1/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="46" selection-start="990" selection-end="990" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/C1/cform.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="76" selection-start="1350" selection-end="1350" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/C1/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="24" selection-start="2751" selection-end="2751" vertical-scroll-proportion="-13.44">
+        <state line="78" column="44" selection-start="2410" selection-end="2410" vertical-scroll-proportion="-54.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/test/async_edit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="181" column="8" selection-start="6350" selection-end="6350" vertical-scroll-proportion="6.3508773">
+        <state line="148" column="6" selection-start="5091" selection-end="5091" vertical-scroll-proportion="-4.7647057">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C1/cform.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="76" selection-start="1350" selection-end="1350" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/t1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="281" selection-end="281" vertical-scroll-proportion="-2.131579">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="8" selection-start="643" selection-end="647" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C1/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="55" selection-start="999" selection-end="999" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="1" selection-end="1892" vertical-scroll-proportion="0.034155596">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/C1/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="61" selection-start="209" selection-end="209" vertical-scroll-proportion="0.093587525">
           <folding />
         </state>
       </provider>

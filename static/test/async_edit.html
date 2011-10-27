@@ -10,8 +10,9 @@
 	<script type="text/javascript" src="/static/js/jquery.ztree.excheck-3.0.js"></script>
 	<script type="text/javascript" src="/static/js/jquery.ztree.exedit-3.0.js"></script>
 	<SCRIPT LANGUAGE="JavaScript">
-		<!--
-        $(document).ajaxSend(function(event, xhr, settings) {
+    <!--
+    //django CRSF JQuer跨域 办法
+    $(document).ajaxSend(function(event, xhr, settings) {
     function getCookie(name) {
         var cookieValue = null;
         if (document.cookie && document.cookie != '') {
@@ -27,6 +28,7 @@
         }
         return cookieValue;
     }
+
     function sameOrigin(url) {
         // url could be relative or scheme relative or absolute
         var host = document.location.host; // host + port
@@ -34,11 +36,11 @@
         var sr_origin = '//' + host;
         var origin = protocol + sr_origin;
         // Allow absolute or scheme relative URLs to same origin
-        return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
-            (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
-            // or any other URL that isn't scheme relative or absolute i.e relative.
-            !(/^(\/\/|http:|https:).*/.test(url));
+        return (url == origin || url.slice(0, origin.length + 1) == origin + '/') || (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+        // or any other URL that isn't scheme relative or absolute i.e relative.
+        !(/^(\/\/|http:|https:).*/.test(url));
     }
+
     function safeMethod(method) {
         return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
     }
@@ -48,156 +50,131 @@
     }
 });
 
+    //zTree 部分代码
+    var setting = {
+    view: {
+        expandSpeed: "",
+        addHoverDom: addHoverDom,
+        removeHoverDom: removeHoverDom,
+        selectedMulti: false
+    },
+    edit: {
+        enable: true
+    },
+    data: {
+        simpleData: {
+            enable: true,
+            cache: false
+        }
+    },
+    callback: {
+        beforeAsync: beforeAsync,
+        beforeRemove: beforeRemove,
+        beforeRename: beforeRename
+    }
+};
+
+function filter(treeId, parentNode, childNodes) {
+    if (!childNodes) return null;
+    for (var i = 0, l = childNodes.length; i < l; i++) {
+        childNodes[i].name = childNodes[i].name.replace(/\.n/g, '.');
+    }
+    return childNodes;
+}
+
+function beforeAsync(treeId, treeNode) {
+    return treeNode ? treeNode.level < 5 : true;
+}
+
+function beforeRemove(treeId, treeNode) {
+    var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+    zTree.selectNode(treeNode);
+    return confirm("确认删除 节点 -- " + treeNode.name + " 吗？");
+}
+
+function beforeRename(treeId, treeNode, newName) {
+    if (newName.length <1) {
+        alert("节点名称不能为空.");
+        return false;
+    }
+    return true;
+}
+
+var newCount = 1;
+
+function addHoverDom(treeId, treeNode) {
+    var sObj = $("#" + treeNode.tId + "_span");
+    if ($("#addBtn_" + treeNode.id).length > 0) return;
+    var addStr = "<button type='button' class='add' id='addBtn_" + treeNode.id + "' title='add node' onfocus='this.blur();'></button>";
+    sObj.append(addStr);
+    var btn = $("#addBtn_" + treeNode.id);
+    if (btn) btn.bind("click", function() {
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+        zTree.addNodes(treeNode, {
+            id: (100 + newCount),
+            pId: treeNode.id,
+            name: "new node" + (newCount++)
+        });
+    });
+}
+
+function removeHoverDom(treeId, treeNode) {
+    $("#addBtn_" + treeNode.id).unbind().remove();
+}
 
 
-        
-		var setting = {
-            async: {
-                 enable: true,
-                 url:"/clist",
-                 autoParam:["id", "name=n"],
-                 dataFilter: filter
-                 },
-
-			view: {expandSpeed:"",
-				addHoverDom: addHoverDom,
-				removeHoverDom: removeHoverDom,
-				selectedMulti: false
-			},
-			edit: {
-				enable: true
-			},
-			data: {
-				simpleData: {
-					enable: true
-				}
-			},
-			callback: {
-				beforeAsync: beforeAsync,
-				beforeRemove: beforeRemove,
-				beforeRename: beforeRename
-			}
-		};
-       
-		function filter(treeId, parentNode, childNodes) {
-			if (!childNodes) return null;
-			for (var i=0, l=childNodes.length; i<l; i++) {
-				childNodes[i].name = childNodes[i].name.replace(/\.n/g, '.');
-			}
-			return childNodes;
-		}
-		function beforeAsync(treeId, treeNode) {
-			return treeNode ? treeNode.level < 5 : true;
-		}
-		function beforeRemove(treeId, treeNode) {
-			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-			zTree.selectNode(treeNode);
-			return confirm("确认删除 节点 -- " + treeNode.name + " 吗？");
-		}		
-		function beforeRename(treeId, treeNode, newName) {
-			if (newName.length == 0) {
-				alert("节点名称不能为空.");
-				return false;
-			}
-			return true;
-		}
-
-		var newCount = 1;
-		function addHoverDom(treeId, treeNode) {
-			var sObj = $("#" + treeNode.tId + "_span");
-			if ($("#addBtn_"+treeNode.id).length>0) return;
-			var addStr = "<button type='button' class='add' id='addBtn_" + treeNode.id
-				+ "' title='add node' onfocus='this.blur();'></button>";
-			sObj.append(addStr);
-			var btn = $("#addBtn_"+treeNode.id);
-			if (btn) btn.bind("click", function(){
-				var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-				zTree.addNodes(treeNode, {id:(100 + newCount), pId:treeNode.id, name:"new node" + (newCount++)});
-			});
-		};
-		function removeHoverDom(treeId, treeNode) {
-			$("#addBtn_"+treeNode.id).unbind().remove();
-		};
-
-        function jsonToString(obj){
-        var THIS = this;
-        switch(typeof(obj)){
-            case 'string':
-                return '"' + obj.replace(/(["\\])/g, '\\$1') + '"';
-            case 'array':
-                return '[' + obj.map(THIS.jsonToString).join(',') + ']';
-            case 'object':
-                 if(obj instanceof Array){
-                    var strArr = [];
-                    var len = obj.length;
-                    for(var i=0; i<len; i++){
-                        strArr.push(THIS.jsonToString(obj[i]));
-                    }
-                    return '[' + strArr.join(',') + ']';
-                }else if(obj==null){
-                    return 'null';
-
-                }else{
-                    var string = [];
-                    for (var property in obj) string.push(THIS.jsonToString(property) + ':' + THIS.jsonToString(obj[property]));
-                    return '{' + string.join(',') + '}';
-                }
-            case 'number':
-                return obj;
-            case false:
-                return obj;
+var templist =[];
+function jsonGetAll(jdata) {
+    for (var i = 0; i < jdata.length; i++) {
+        //fdata.push({"id":jdata[i].id,"name":jdata[i].name,"pId":jdata[i].pId});
+        //$('#hidden').append("{'id':" + jdata[i].id + ",'name':'" + jdata[i].name + "','pId':" + jdata[i].pId + "},");
+        templist.push({'id':jdata[i].id ,'name':jdata[i].name ,'pId': jdata[i].pId});
+        if (jdata[i].childs && jdata[i].childs.length > 0) {
+            jsonGetAll(jdata[i].childs);
         }
     }
+    //var fdata = $('#hidden').html();
+    //fdata = fdata.substring(0, fdata.length - 1);
+    //fdata = fdata.replace(/null/g, "0");
+    //fdata = "[" + fdata + "]";
+    //$('#hidden').append(templist);
+    //alert(templist);
+    return templist;
+}
 
-    function jsonGetAll(jdata) {
+function postJsondata() {
+    var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+    var zznodes = treeObj.getNodes();
+    var json_str = (JSON.stringify(jsonGetAll(zznodes))).replace(/null/g, "0");
+    //alert(json_str)
+    $.ajax({
+        type: 'POST',
+        url: 'http://127.0.0.1:8000/crec/',
+        data: json_str,
+        dataType: "JSON"
+    });
+    templist = [];
+}
 
-            for (var i = 0; i < jdata.length; i++) {
-                //fdata.push({"id":jdata[i].id,"name":jdata[i].name,"pId":jdata[i].pId});
-                 $('#hidden').append("{'id':"+jdata[i].id+",'name':'"+jdata[i].name+"','pId':"+jdata[i].pId+"},")
-                if (jdata[i].childs && jdata[i].childs.length>0) {
-                        jsonGetAll(jdata[i].childs)}
-            }
-        var fdata = $('#hidden').html();
-        fdata = fdata.substring(0,fdata.length-1);
-        fdata = fdata.replace(/null/g, "0");
-        fdata = "["+fdata+"]";
-        return fdata
-        };
-
-        function strToJson(str){ //str转化为JSON
-            return (new Function("return " + str))();
+$(document).ready(function() {
+    $('#hidden').html(""); //初始化隐藏层
+    $.ajax({
+        type: 'GET',
+        dataType: "json",
+        url: "http://127.0.0.1:8000/clist?spie=" + new Date().getTime(),
+        //请求的action路径
+        error: function() { //请求失败处理函数
+            alert('请求失败');
+        },
+        success: function(data) { //请求成功后处理函数。
+            //console.log(data);
+            var zNodes = data; //把后台封装好的简单Json格式赋给treeNodes
+            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
         }
-        function postJsondata(){
-            var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
-            var zznodes = eval(treeObj.getNodes());
-
-
-            $.ajax({
-                  type: 'POST',
-                  url: 'http://127.0.0.1:8000/crec/',
-                  data: jsonGetAll(zznodes),
-                  dataType: JSON
-                });
-            }
-        
-	$(document).ready(function(){
-        $('#hidden').html("");//初始化隐藏层
-        $.ajax({
-            type: 'GET',
-            dataType : "json",
-            url: "http://127.0.0.1:8000/clist",//请求的action路径
-            error: function () {//请求失败处理函数
-                alert('请求失败');
-		     },
-		     success:function(data){ //请求成功后处理函数。
-             //console.log(data);
-                var zNodes = data;   //把后台封装好的简单Json格式赋给treeNodes
-                $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-		       }
-	})
+    });
 });
 
-		//-->
+//-->
 	</SCRIPT>
 	<style type="text/css">
 .ztree li button.add {margin-left:2px; margin-right: -1px; background-position:-112px 0; vertical-align:top; *vertical-align:middle}
